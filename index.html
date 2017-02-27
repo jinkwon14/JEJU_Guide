@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Jeju Island!</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Hamburder icon -->
+    <input type="checkbox" id="hamburger" class="hamburger" />
+    <label for="hamburger"></label>
+
+    <!-- div button for changing the map to the island view(zoom and center the map to see the whole island) -->
+    <div id="islandViewButton" data-bind="click: islandView">Island View</div>
+
+    <!-- Nav-box feature: ADDITIONAL! -->
+    <div id="locationImageLayer">
+      <img id="locationImage" data-bind= "attr: { src: locationImage, title: details }">
+      <div class="locationImageButtons" id="right-button" data-bind="click: increaseImageIndex"></div>
+      <div class="locationImageButtons" id="left-button" data-bind="click: decreaseImageIndex"></div>
+    </div>
+
+    <!-- Navigation-box: includes drop down menu for options and weather -->
+    <aside class="navigation-box">
+      <h1>Welcome to Jeju Island!</h1>
+
+      <!-- Nav-box feature 1: Toggle button for displaying and hiding markers -->
+      <div>
+        <button type="button" id="show-hide-listings" name="button" data-bind="click: showHideListings">
+          <span data-bind="visible: showListingsMessage"><strong>Show</strong> All Listings</span>
+          <span data-bind="visible: hideListingsMessage"><strong>Hide</strong> All Listings</span>
+        </button>
+      </div>
+
+      <!-- Nav-box feature 2:  Drop down menu for options -->
+      <select id="list-select", data-bind=" options: tagList, value: filterListBy, optionsCaption: 'Select a category!'"> </select>
+
+      <!-- Nav-box feature 3:  Filtered list -->
+      <div class="scroll">
+        <ul data-bind="foreach: filteredList">
+          <li class = "list" data-bind="click: showInformation, event: {mouseover: iconMouseOver, mouseout: iconMouseOut}">
+            <div data-bind="text: title"> </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Nav-box feature 4:  Current Weather of Jeju Island -->
+      <div id="weatherData">
+        <p><strong>
+          <span data-bind="text: weather"></span>
+          <a data-bind="text: weatherErrorMessage, attr: { href: googleWeatherURL, title: details }"></a>
+        </strong></p>
+      </div>
+    </aside>
+    <main id="map"></main>
+    <article id="mapErrorScreen" data-bind="style: {display: displayError() > 3 ? '' : 'none'}">
+      <h3><p>Thank you very much for visiting. Our site is under construction at the moment.</p>
+      <p>Please visit us again to learn more about Jeju Island!</p></h3>
+      <img data-bind="attr : {src: googleErrorImage, title: googleErrorDetails}">
+    </article>
+
+
+    <!-- Ordered according to this thread: https://discussions.udacity.com/t/need-help-with-my-neighborhood-map-project/198379/6 -->
+    <script src="style/jquery-3.1.1.min.js"> </script>
+    <script src="style/knockout-3.4.1.js"></script>
+    <script src="style/map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJbmO4RUULR_TP9G0gGqBLuqwu71d95Vw&libraries=geometry&v=3&callback=initMap" onerror = "mapError()" ></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-91210723-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>

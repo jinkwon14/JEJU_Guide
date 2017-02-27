@@ -1,0 +1,538 @@
+/*Items on this file:*/
+
+
+/*
+1. Styles applied over all device types
+2. phone + portrait
+3. phone + landscape
+4. tablet + portrait
+5. tablet + landscape
+6. larger screens
+*/
+
+
+/*Hamburder icon*/
+
+
+/*Reference: https://www.sitepoint.com/pure-css-off-screen-navigation-menu/*/
+
+
+/* 1. Styles applied over all device types */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Overpass Mono', monospace;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#mapErrorScreen {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #7AAFF9;
+}
+
+#map {
+    z-index: 0;
+}
+
+.navigation-box {
+    z-index: 1;
+    position: fixed;
+    opacity: 0.7;
+}
+
+.list {
+    list-style-type: none;
+    vertical-align: middle;
+}
+
+#islandViewButton {
+    z-index: 1;
+    border: 3px solid #7AAFF9;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+#islandViewButton:hover {
+    background-color: #C74438;
+    cursor: pointer;
+    -webkit-transition-duration: 0.3s;
+    /* Safari */
+    transition-duration: 0.3s;
+}
+
+
+/* Hamburger icon in a form of checkbox. Check box is hidden. */
+
+.hamburger {
+    z-index: 2;
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+
+/*When clicked, navigation box(box with lists and weather information) will be hidden. */
+
+.hamburger:checked~.navigation-box {
+    z-index: 2;
+    display: none;
+}
+
+
+/* Create a Hamburger icon that is tied to checkbox */
+
+label[for="hamburger"] {
+    z-index: 2;
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='10px' height='10px' viewBox='0 0 10 10' enable-background='new 0 0 10 10' xml:space='preserve'><rect width='10' height='6'/><rect y='24' width='10' height='6'/><rect y='12' width='10' height='6'/></svg>");
+}
+
+#locationImageLayer {
+    z-index: 3;
+    position: fixed;
+    bottom: 0;
+    right: 35px;
+    width: 30%;
+    height: auto;
+    opacity: 0.2;
+}
+
+#locationImageLayer:hover {
+    opacity: 0.9;
+}
+
+#pano {
+    width: 200px;
+    height: 200px;
+}
+
+#locationImage {
+    height: 80%;
+    width: 80%;
+    margin-top: 10%;
+    margin-left: 10%;
+    border: 2px solid;
+}
+
+.locationImageButtons {
+    width: 50%;
+    height: 50%;
+    /*background-color: transparent;*/
+}
+
+.locationImageButtons:hover {
+    cursor: pointer;
+}
+
+#right-button {
+    position: fixed;
+    bottom: 2%;
+    right: 50%;
+    background-color: red;
+    width: 40px;
+    height: 10px;
+}
+
+#left-button {
+    position: fixed;
+    bottom: 2%;
+    right: 50%;
+    background-color: blue;
+    width: 20px;
+    height: 10px;
+}
+
+/*2. PHONES + LANDSCAPE*/
+
+@media (min-width: 240px) and (orientation: landscape) {
+    .navigation-box {
+        top: 1px;
+        bottom: 1px;
+        left: 1px;
+        width: 30%;
+        padding: 1px;
+        border: solid 3px;
+        border-radius: 10px;
+        background-color: #7AAFF9;
+    }
+    /* Create a Hamburger icon that is tied to checkbox */
+    label[for="hamburger"] {
+        z-index: 2;
+        position: absolute;
+        top: 15px;
+        left: 20px;
+    }
+    h1 {
+        color: #525454;
+        font-size: 12px;
+        margin: 0 0 10px 0;
+        text-align: center;
+        opacity: 0;
+    }
+    #show-hide-listings {
+        width: 100%;
+        background-color: white;
+        margin-top: 10px;
+        font-size: 12px;
+    }
+    #list-select {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 12px;
+    }
+    .scroll {
+        height: 55%;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    #weatherData {
+        font-size: 11px;
+    }
+    #islandViewButton {
+        position: absolute;
+        top: 35px;
+        right: 15px;
+    }
+    #map {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        top: 0;
+        bottom: 100%;
+        left: 0;
+    }
+    #mapErrorScreen h3 {
+        font-size: 0.8em;
+        display: inline;
+        text-align: center;
+        position: fixed;
+        top: 5%;
+        width: 100%;
+        height: 100%;
+        background: #7AAFF9;
+    }
+    #mapErrorScreen img {
+        position: fixed;
+        top: 30%;
+        left: 25%;
+        width: 50%;
+        height: auto;
+        background: #7AAFF9;
+        border: solid 3px;
+        border-radius: 15px;
+    }
+}
+
+
+/*PHONES + PORTRAIT*/
+
+@media (min-width: 240px) and (orientation: portrait) {
+    .navigation-box {
+        top: 1px;
+        width: 100%;
+        height: 30%;
+        padding: 5px;
+        border: solid 3px;
+        border-radius: 10px;
+        background-color: #7AAFF9;
+    }
+    label[for="hamburger"] {
+        z-index: 2;
+        position: absolute;
+        top: 15px;
+        left: 10px;
+    }
+    /*Reference: http://www.w3schools.com/css/css3_buttons.asp*/
+    h1 {
+        color: #525454;
+        font-size: 18px;
+        margin: 5px 0 5px 0;
+        text-align: center;
+    }
+    #show-hide-listings {
+        width: 100%;
+        background-color: white;
+        margin-top: 3px;
+        font-size: 12px;
+    }
+    #list-select {
+        width: 100%;
+        margin-top: 3px;
+        font-size: 12px;
+    }
+    .scroll {
+        height: 35%;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    #weatherData {
+        font-size: 11px;
+    }
+    #islandViewButton {
+        position: fixed;
+        bottom: 5px;
+        left: 5px;
+    }
+    #map {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        top: 0;
+        bottom: 100%;
+        left: 0;
+    }
+    #mapErrorScreen h3 {
+        font-size: 0.8em;
+        display: inline;
+        text-align: center;
+        position: fixed;
+        top: 20%;
+        width: 100%;
+        height: 100%;
+        background: #7AAFF9;
+    }
+    #mapErrorScreen img {
+        position: fixed;
+        top: 50%;
+        left: 15%;
+        width: 70%;
+        height: auto;
+        background: #7AAFF9;
+        border: solid 3px;
+        border-radius: 15px;
+    }
+}
+
+
+/*TABLETS in LANDSCAPE*/
+
+@media (min-width: 767px) and (orientation: landscape) {
+    .navigation-box {
+        top: 1px;
+        bottom: 1px;
+        left: 1px;
+        width: 30%;
+        padding: 15px;
+        border: solid 3px;
+        border-radius: 10px;
+        background-color: #7AAFF9;
+    }
+    h1 {
+        color: #525454;
+        font-size: 17px;
+        margin: 0 0 10px 0;
+        text-align: center;
+    }
+    #show-hide-listings {
+        width: 100%;
+        background-color: white;
+        margin-top: 10px;
+        font-size: 15px;
+    }
+    #list-select {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 15px;
+    }
+    #weatherData {}
+    #islandViewButton {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    #map {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        top: 0;
+        bottom: 100%;
+        left: 0;
+    }
+    #mapErrorScreen h3 {
+        display: inline;
+        text-align: center;
+        position: fixed;
+        top: 5%;
+        width: 100%;
+        height: 100%;
+        background: #7AAFF9;
+    }
+    #mapErrorScreen img {
+        position: fixed;
+        top: 20%;
+        left: 15%;
+        width: 70%;
+        height: auto;
+        background: #7AAFF9;
+        border: solid 3px;
+        border-radius: 15px;
+    }
+}
+
+
+/*TABLETS in PORTRAIT*/
+
+@media (min-width: 767px) and (orientation: portrait) {
+    .navigation-box {
+        width: 100%;
+        height: 30%;
+        border: solid 3px;
+        border-radius: 10px;
+        background-color: #7AAFF9;
+    }
+    h1 {
+        color: #525454;
+        font-size: 20px;
+        margin: 0 0 10px 0;
+        text-align: center;
+    }
+    #show-hide-listings {
+        width: 100%;
+        background-color: white;
+        margin-top: 5px;
+        font-size: 15px;
+    }
+    #list-select {
+        width: 100%;
+        margin-top: 5px;
+        font-size: 15px;
+    }
+    .scroll {
+        height: 55%;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    #weatherData {
+        position: relative;
+        bottom: 5%
+        font-size: 17px;
+    }
+    #islandViewButton {
+        position: fixed;
+        bottom: 5px;
+        left: 5px;
+    }
+    #map {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        top: 0;
+        bottom: 100%;
+        left: 0;
+    }
+    #mapErrorScreen h3 {
+        display: inline;
+        text-align: center;
+        position: fixed;
+        top: 10%;
+        width: 100%;
+        height: 100%;
+        background: #7AAFF9;
+    }
+    #mapErrorScreen img {
+        position: fixed;
+        top: 40%;
+        left: 15%;
+        width: 70%;
+        height: auto;
+        background: #7AAFF9;
+        border: solid 3px;
+        border-radius: 15px;
+    }
+}
+
+
+/* COMPUTER SCREEN */
+
+@media screen and (min-width:1200px) {
+    .navigation-box {
+        top: 1px;
+        bottom: 1px;
+        left: 1px;
+        width: 20%;
+        min-width: 350px;
+        padding: 5px;
+        border: solid 3px;
+        border-radius: 10px;
+        background-color: #7AAFF9;
+    }
+    .navigation-box:hover {
+        opacity: 0.9;
+    }
+    #show-hide-listings {
+        width: 100%;
+        background-color: white;
+        margin-top: 10px;
+        padding: 5px;
+        font-size: 15px;
+    }
+    #list-select {
+        width: 100%;
+        margin-top: 10px;
+        padding: 5px;
+        font-size: 15px;
+    }
+    /* NOTE: There should be no space between hover and : to bind the effect! */
+    .list:hover {
+        color: #CD456B;
+        -webkit-transition-duration: 0.3s;
+        /* Safari */
+        transition-duration: 0.3s;
+        cursor: pointer;
+    }
+    #map {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        top: 0;
+        bottom: 100%;
+        left: 0;
+    }
+    #islandViewButton {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    #locationImage {
+        height: 60%;
+        width: 60%;
+        margin-left: 20%;
+        border: 2px solid;
+    }
+    #mapErrorScreen h3 {
+        font-size: 1.5em;
+        display: inline;
+        text-align: center;
+        position: fixed;
+        top: 10%;
+        width: 100%;
+        height: 100%;
+        background: #7AAFF9;
+    }
+    #weatherData {
+        font-size: 15px;
+    }
+    #mapErrorScreen img {
+        position: fixed;
+        top: 25%;
+        left: 30%;
+        width: 40%;
+        height: auto;
+        background: #7AAFF9;
+        border: solid 3px;
+        border-radius: 15px;
+    }
+}
